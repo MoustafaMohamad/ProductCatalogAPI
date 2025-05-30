@@ -1,0 +1,28 @@
+﻿global using AutoMapper;
+global using AutoMapper.QueryableExtensions;
+global using Entities;
+global using FluentValidation;
+global using MediatR;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using ProductCatalogAPI.Common.Exceptions;
+global using ProductCatalogAPI.Common.Helpers;
+global using ProductCatalogAPI.Common.Helpers.PasswordHasherHelper;
+global using ProductCatalogAPI.Common.Middlewares;
+global using ProductCatalogAPI.Common.Repositories;
+global using ProductCatalogAPI.Common.Repositories.Products;
+global using ProductCatalogAPI.Common.Repositories.Users;
+global using ProductCatalogAPI.Data.Contexts;
+global using ProductCatalogAPI.Entities;
+global using ProductCatalogAPI.Features.Auth.Register.Commands;
+global using ProductCatalogAPI.Features.Common;
+global using ProductCatalogAPI.Features.Common.Data;
+global using ProductCatalogAPI.Features.Common.Views;
+global using ProductCatalogAPI.Features.Products.Common.Profiles;
+global using ProductCatalogAPI.Features.Products.GetAllProducts.Dtos;
+global using System.Linq.Expressions;
+global using System.Reflection;
+global using System.Security.Cryptography;
+global using static ProductCatalogAPI.Common.PagedListQueryableExtensions;
+
