@@ -68,3 +68,32 @@ The solution is structured around **Clean Architecture** and **CQRS (Command Que
    ```bash
    git clone https://github.com/your-username/ProductCatalogAPI.git
    cd ProductCatalogAPI
+   Configure the database:
+
+Update the connection string in appsettings.json.
+
+Apply migrations:
+
+bash
+Copy
+dotnet ef database update
+Run the API:
+
+bash
+Copy
+dotnet run
+Access Swagger UI:
+
+Navigate to https://localhost:5001/swagger for interactive API documentation.
+
+🤝 Contributing
+Contributions are welcome! Please open issues or submit pull requests for improvements and bug fixes.
+
+Fork the repository.
+
+Create a new branch:
+git checkout -b feature/your-feature
+
+Commit your changes.
+
+Push to your fork and submit a pull request.
