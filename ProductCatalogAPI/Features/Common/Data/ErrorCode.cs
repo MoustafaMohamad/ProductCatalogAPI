@@ -4,5 +4,15 @@
     {
         None,
         InvalidInput,
+
+        ProductNotFound = 1000,
+
+        CategoryNotFound = 2000,
+
+        ClientClosedRequest = 499,
+
+
+        Unauthorized = 401,
+
     }
 }

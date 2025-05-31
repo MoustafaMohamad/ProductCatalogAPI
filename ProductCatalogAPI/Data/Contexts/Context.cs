@@ -16,10 +16,6 @@
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(Context).Assembly);
-            modelBuilder.Entity<Category>().HasData(
-                new Category { Id = Guid.NewGuid(), Name = "Electronics" },
-                new Category { Id = Guid.NewGuid(), Name = "Books" }
-                 );
             base.OnModelCreating(modelBuilder);
 
         }

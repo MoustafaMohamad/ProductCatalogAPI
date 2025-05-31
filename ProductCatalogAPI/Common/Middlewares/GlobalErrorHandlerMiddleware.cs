@@ -17,7 +17,11 @@
             {
                 await next(context);
             }
-            catch (Exception ex)
+            //catch (OperationCanceledException)
+            //{
+            //    //context.Response.StatusCode = StatusCodes.Status499ClientClosedRequest;
+            //}
+            catch (Exception)
             {
                 // Log the exception (not implemented here)
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;

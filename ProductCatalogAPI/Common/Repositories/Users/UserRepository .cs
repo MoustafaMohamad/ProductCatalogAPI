@@ -16,6 +16,11 @@ namespace ProductCatalogAPI.Common.Repositories.Users
             return await _context.Users.AnyAsync(u => u.Email == email, cancellationToken);
         }
 
+        public async Task<User?> GetByUsernameAsync(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Username == username, cancellationToken);
+        }
+
         public async Task<bool> UsernameIsExistAsync(string username)
         {
             return await _context.Users.AnyAsync(u => u.Username == username, cancellationToken);

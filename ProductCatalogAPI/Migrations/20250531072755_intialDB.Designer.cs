@@ -12,8 +12,8 @@ using ProductCatalogAPI.Data.Contexts;
 namespace ProductCatalogAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250530212857_initiateDB")]
-    partial class initiateDB
+    [Migration("20250531072755_intialDB")]
+    partial class intialDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,18 +82,6 @@ namespace ProductCatalogAPI.Migrations
                             Id = new Guid("66666666-6666-6666-6666-666666666666"),
                             IsDeleted = false,
                             Name = "Sports"
-                        },
-                        new
-                        {
-                            Id = new Guid("851815c5-b07d-41e3-bff0-b2e15f01b264"),
-                            IsDeleted = false,
-                            Name = "Electronics"
-                        },
-                        new
-                        {
-                            Id = new Guid("8e8e7ebc-0d7d-44f1-8ae9-d923e55a1af8"),
-                            IsDeleted = false,
-                            Name = "Books"
                         });
                 });
 
@@ -174,6 +162,18 @@ namespace ProductCatalogAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Email = "admin@example.com",
+                            IsDeleted = false,
+                            Name = "Administrator",
+                            PasswordHash = "F7C826016F9F146B11FB4C3465B0CAB96BA74A12C616D44DB408AF1B900F8588-C43B944A674D57CFB0F17838565A2212",
+                            Role = 1,
+                            Username = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Product", b =>

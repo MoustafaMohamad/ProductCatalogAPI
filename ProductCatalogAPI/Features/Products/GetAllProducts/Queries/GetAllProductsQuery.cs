@@ -2,7 +2,7 @@
 {
     public record GetAllProductsQuery(int Page, int PageSize) : IRequest<RequestResult<PagedList<GetAllProductsDto>>>;
 
-    public class GetAllProductsQueryHandler : BaseRequestHandler<GetAllProductsQuery, RequestResult<PagedList<GetAllProductsDto>>>
+    public sealed class GetAllProductsQueryHandler : BaseRequestHandler<GetAllProductsQuery, RequestResult<PagedList<GetAllProductsDto>>>
     {
         private readonly IProductRepository _productRepository;
         public GetAllProductsQueryHandler(RequestParameters requestParameters, IProductRepository productRepository)

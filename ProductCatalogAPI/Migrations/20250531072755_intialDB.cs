@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace ProductCatalogAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class initiateDB : Migration
+    public partial class intialDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,8 +77,13 @@ namespace ProductCatalogAPI.Migrations
                     { new Guid("33333333-3333-3333-3333-333333333333"), false, "Clothing" },
                     { new Guid("44444444-4444-4444-4444-444444444444"), false, "Home Appliances" },
                     { new Guid("55555555-5555-5555-5555-555555555555"), false, "Toys" },
-                    { new Guid("66666666-6666-6666-6666-666666666666"), false, "Sports" },
+                    { new Guid("66666666-6666-6666-6666-666666666666"), false, "Sports" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "IsDeleted", "Name", "PasswordHash", "Role", "Username" },
+                values: new object[] { new Guid("11111111-1111-1111-1111-111111111111"), "admin@example.com", false, "Administrator", "F7C826016F9F146B11FB4C3465B0CAB96BA74A12C616D44DB408AF1B900F8588-C43B944A674D57CFB0F17838565A2212", 1, "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_Name",

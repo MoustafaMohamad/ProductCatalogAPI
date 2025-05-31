@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Auth\Common\Queries\" />
+    <Folder Include="Features\Auth\Common\" />
   </ItemGroup>
 
 </Project>

@@ -26,7 +26,7 @@ namespace ProductCatalogAPI.Data.EntityConfigrations
                    .IsRequired();
 
             builder.HasQueryFilter(p => !p.IsDeleted);
-            builder.HasQueryFilter(p => p.IsActive);
+            //builder.HasQueryFilter(p => p.IsActive);
 
             builder.HasOne(p => p.Category)
                    .WithMany(c => c.Products)

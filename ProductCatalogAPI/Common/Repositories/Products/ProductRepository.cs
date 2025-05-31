@@ -15,6 +15,15 @@ namespace ProductCatalogAPI.Common.Repositories.Products
             return await _context.Products.AnyAsync(p => p.Name == name, cancellationToken);
         }
 
+        public async Task<bool> IsProductExistAsync(Guid id)
+        {
+            return await _context.Products.AnyAsync(p => p.Id == id, cancellationToken);
+        }
+
+        public IQueryable<Product> GetProductsByCategory(Guid categoryId)
+        {
+            return GetAll().Where(p => p.CategoryId == categoryId);
+        }
 
     }
 }
