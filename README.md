@@ -54,12 +54,6 @@ The solution is structured around **Clean Architecture** and **CQRS (Command Que
 
 ---
 
-## 📂 Project Structure
-
-(Structure overview can be added here if needed, e.g., folder layout.)
-
----
-
 ## 🚀 Getting Started
 
 ### ✅ Prerequisites
