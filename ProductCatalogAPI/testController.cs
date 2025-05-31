@@ -6,16 +6,20 @@ namespace ProductCatalogAPI
     [ApiController]
     public class testController : ControllerBase
     {
+        private readonly Context _context;
         private readonly ITokenHelper _tokenHelper;
 
-        public testController(ITokenHelper tokenHelper)
+        public testController(ITokenHelper tokenHelper, Context context)
         {
             _tokenHelper = tokenHelper;
+            _context = context;
         }
 
         [HttpPost]
         public string Get()
         {
+            Console.WriteLine($"_context.GetHashCode() in testController {_context.GetHashCode()}"); ;
+
             var adminUserId = Guid.Parse("11111111-1111-1111-1111-111111111111");
             var user = new User
             {

@@ -25,6 +25,7 @@ global using ProductCatalogAPI.Features.Common.Data;
 global using ProductCatalogAPI.Features.Common.Queries.Categories;
 global using ProductCatalogAPI.Features.Common.Views;
 global using ProductCatalogAPI.Features.Products.AddProduct.Commands;
+global using ProductCatalogAPI.Features.Products.AddProduct.Events;
 global using ProductCatalogAPI.Features.Products.Common.Profiles;
 global using ProductCatalogAPI.Features.Products.DeleteProduct.Commands;
 global using ProductCatalogAPI.Features.Products.EditProduct.Commands;

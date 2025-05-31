@@ -9,8 +9,10 @@
         {
             _mediator = mediator;
         }
-        [Authorize(Roles = "Admin")]
 
+
+        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("get-product")]
         public async Task<EndpointResponse<GetProductViewModel>> GetProductEndpoint([FromQuery] GetProductEndpointRequest request)
         {

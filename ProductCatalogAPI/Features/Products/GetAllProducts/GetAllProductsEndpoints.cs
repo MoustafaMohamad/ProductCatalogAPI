@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-
-namespace ProductCatalogAPI.Features.Products.GetAllProducts
+﻿namespace ProductCatalogAPI.Features.Products.GetAllProducts
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -14,17 +12,17 @@ namespace ProductCatalogAPI.Features.Products.GetAllProducts
         [HttpGet("get-all-products")]
         [Authorize(Roles = "Admin")]
         [Authorize(Policy = "AdminOnly")]
-        public async Task<EndpointResponse<PagedList<GetAllProductsViewModel>>> GetAllProductsEndpoint([FromQuery] GetAllProductsEndpointsRequest request)
+        public async Task<EndpointResponse<IEnumerable<GetAllProductsViewModel>>> GetAllProductsEndpoint([FromQuery] GetAllProductsEndpointsRequest request)
         {
             var productsDtoResult = await _mediator.Send(new GetAllProductsQuery(request.page, request.pageSize));
             if (!productsDtoResult.IsSuccess)
             {
-                return EndpointResponse<PagedList<GetAllProductsViewModel>>.Failure(productsDtoResult.ErrorCode);
+                return EndpointResponse<IEnumerable<GetAllProductsViewModel>>.Failure(productsDtoResult.ErrorCode);
 
             }
-            var productsViewModel = await productsDtoResult.Data.items.Map<GetAllProductsViewModel>()
-                .AsQueryable().ToPagedListAsync(request.page, request.pageSize);
-            return EndpointResponse<PagedList<GetAllProductsViewModel>>.Success(productsViewModel);
+            var productsViewModel = productsDtoResult.Data.items.Map<GetAllProductsViewModel>();
+
+            return EndpointResponse<IEnumerable<GetAllProductsViewModel>>.Success(productsViewModel);
         }
     }
 

@@ -26,7 +26,7 @@
                 }
                 _userState.Name = loggedUser.FindFirst(ClaimTypes.Name)?.Value ?? "";
 
-                var roleValue = loggedUser.FindFirstValue("Role");
+                var roleValue = loggedUser.FindFirstValue(ClaimTypes.Role);
                 if (Enum.TryParse<Role>(roleValue, out var parsedRole))
                 {
                     _userState.Role = parsedRole;

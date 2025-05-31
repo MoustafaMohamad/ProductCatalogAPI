@@ -10,19 +10,19 @@
         {
             _mediator = mediator;
         }
-
+        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("get-products-by-category")]
-        public async Task<EndpointResponse<PagedList<GetProductsByCategoryViewModel>>> GetProductsByCategoryEndpoint([FromQuery] GetProductsByCategoryEndpointRequest request)
+        public async Task<EndpointResponse<IEnumerable<GetProductsByCategoryViewModel>>> GetProductsByCategoryEndpoint([FromQuery] GetProductsByCategoryEndpointRequest request)
         {
             var productsDtoResult = await _mediator.Send(new GetProductsByCategoryQuery(request.CategoryId, request.Page, request.PageSize));
             if (!productsDtoResult.IsSuccess)
             {
-                return EndpointResponse<PagedList<GetProductsByCategoryViewModel>>.Failure(productsDtoResult.ErrorCode);
+                return EndpointResponse<IEnumerable<GetProductsByCategoryViewModel>>.Failure(productsDtoResult.ErrorCode);
             }
-            var productsViewModel = await productsDtoResult.Data.items.Map<GetProductsByCategoryViewModel>()
-                .AsQueryable().ToPagedListAsync(request.Page, request.PageSize);
+            var productsViewModel = productsDtoResult.Data.items.Map<GetProductsByCategoryViewModel>();
 
-            return EndpointResponse<PagedList<GetProductsByCategoryViewModel>>.Success(productsViewModel);
+            return EndpointResponse<IEnumerable<GetProductsByCategoryViewModel>>.Success(productsViewModel);
         }
 
     }

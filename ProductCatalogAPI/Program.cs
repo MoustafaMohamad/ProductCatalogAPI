@@ -54,6 +54,7 @@ namespace ProductCatalogAPI
             builder.Services
                 .AddFluentValidation(Assembly.GetExecutingAssembly())
                 .AddMediatR()
+                .AddAutoMapper(typeof(ProductProfile))
                 .AddApplicationServices()
                 .AddAuthenticationConfiguration(builder.Configuration)
                 .AddAuthorizationConfiguration();
@@ -90,7 +91,7 @@ namespace ProductCatalogAPI
 
             app.UseMiddleware<UserStateMiddleware>();
             app.UseMiddleware<ValidationExceptionHandlingMiddleware>();
-            //app.UseMiddleware<CancellationTokenCaptureMiddleware>();
+            app.UseMiddleware<CancellationTokenCaptureMiddleware>();
 
 
             app.UseHttpsRedirection();

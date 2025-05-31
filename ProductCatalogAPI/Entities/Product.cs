@@ -10,7 +10,7 @@
         public decimal Price { get; set; }
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
-        //public bool IsActive => DateTime.UtcNow >= StartDate && DateTime.UtcNow <= StartDate + Duration;
+        public bool IsActive => DateTime.UtcNow >= StartDate && DateTime.UtcNow <= StartDate + Duration;
 
     }
 }

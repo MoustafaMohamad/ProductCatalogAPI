@@ -4,7 +4,15 @@
     {
         public static IServiceCollection AddAuthorizationConfiguration(this IServiceCollection services)
         {
-            services.AddAuthorization();
+            services.AddAuthorization(c =>
+            {
+                c.AddPolicy("AdminOnly", policy =>
+                {
+                    policy.RequireRole("Admin");
+                });
+
+
+            });
             return services;
         }
     }

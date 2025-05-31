@@ -4,6 +4,7 @@ namespace ProductCatalogAPI.Common.Helpers
 {
     public static class MapperHelper
     {
+
         public static IMapper Mapper { get; set; }
 
         public static IQueryable<TResult> Map<TResult>(this IQueryable source)

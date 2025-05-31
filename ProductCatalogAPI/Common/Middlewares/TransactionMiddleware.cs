@@ -10,6 +10,7 @@
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             string method = context.Request.Method.ToUpper();
+            Console.WriteLine($"_context.GetHashCode() in TransactionMiddleware {_context.GetHashCode()}"); ;
 
             if (method == "POST" || method == "PUT" || method == "DELETE")
             {
@@ -17,8 +18,9 @@
                 try
                 {
                     await next(context);
-                    await _context.SaveChangesAsync();
                     await transaction.CommitAsync();
+                    await _context.SaveChangesAsync();
+
                 }
                 catch (Exception)
                 {

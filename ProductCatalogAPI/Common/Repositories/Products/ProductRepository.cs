@@ -1,5 +1,4 @@
-﻿
-namespace ProductCatalogAPI.Common.Repositories.Products
+﻿namespace ProductCatalogAPI.Common.Repositories.Products
 {
     public class ProductRepository : Repository<Product>, IProductRepository
     {
@@ -24,6 +23,9 @@ namespace ProductCatalogAPI.Common.Repositories.Products
         {
             return GetAll().Where(p => p.CategoryId == categoryId);
         }
+
+
+
 
     }
 }

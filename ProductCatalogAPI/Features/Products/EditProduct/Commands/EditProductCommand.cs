@@ -31,10 +31,13 @@ namespace ProductCatalogAPI.Features.Products.EditProduct.Commands
                 Name = request.Name,
                 StartDate = request.StartDate,
                 Duration = request.Duration,
-                Price = request.Price
+                Price = request.Price,
+                CategoryId = request.CategoryId
+
             };
             _productRepository.UpdateIncluded(editedProduct, nameof(Product.Name),
-                nameof(Product.StartDate), nameof(Product.Duration), nameof(Product.Price));
+                nameof(Product.StartDate), nameof(Product.Duration), nameof(Product.Price),
+                nameof(Product.CategoryId));
             return RequestResult<bool>.Success(true);
         }
     }

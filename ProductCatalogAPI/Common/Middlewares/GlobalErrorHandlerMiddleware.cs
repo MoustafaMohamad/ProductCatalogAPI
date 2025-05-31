@@ -1,4 +1,6 @@
-﻿namespace ProductCatalogAPI.Common.Middlewares
+﻿using ProductCatalogAPI.Features.Common.AppLogs.Commands;
+
+namespace ProductCatalogAPI.Common.Middlewares
 {
     public class GlobalErrorHandlerMiddleware : IMiddleware
     {
@@ -17,15 +19,21 @@
             {
                 await next(context);
             }
-            //catch (OperationCanceledException)
-            //{
-            //    //context.Response.StatusCode = StatusCodes.Status499ClientClosedRequest;
-            //}
-            catch (Exception)
+            catch (OperationCanceledException)
             {
-                // Log the exception (not implemented here)
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                await context.Response.WriteAsync("An unexpected error occurred.");
+                var result = EndpointResponse<bool>.Failure(ErrorCode.ClientClosedRequest);
+                await context.Response.WriteAsJsonAsync(result);
+            }
+            catch (Exception ex)
+            {
+                string message = $"Error Occured: {ex.Message}.";
+                ErrorCode errorCode = ErrorCode.UnKnown;
+
+                var loggingMessage = $"Error Occured: {ex.Message}";
+                await _mediator.Send(new AddLogCommand(LogLevels.Error, loggingMessage));
+
+                var result = EndpointResponse<bool>.Failure(errorCode);
+                await context.Response.WriteAsJsonAsync(result);
             }
         }
     }

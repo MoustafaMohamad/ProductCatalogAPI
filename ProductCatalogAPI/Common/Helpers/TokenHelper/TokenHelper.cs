@@ -1,6 +1,4 @@
-﻿
-
-namespace ProductCatalogAPI.Common.Helpers.TokenHelper
+﻿namespace ProductCatalogAPI.Common.Helpers.TokenHelper
 {
     public class TokenHelper : ITokenHelper
     {
@@ -11,21 +9,24 @@ namespace ProductCatalogAPI.Common.Helpers.TokenHelper
         }
         public string GenerateToken(User user)
         {
-            var claims = new[]
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
-                new Claim("ID", user.Id.ToString()),
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim("ID", user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
+                }),
+                Expires = DateTime.Now.AddHours(1),
+                Issuer = _configuration["Jwt:Issuer"],
+                Audience = _configuration["Jwt:Audience"],
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Key"])), SecurityAlgorithms.HmacSha256)
             };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
-                signingCredentials: creds);
-            return new JwtSecurityTokenHandler().WriteToken(token);
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+
         }
 
     }

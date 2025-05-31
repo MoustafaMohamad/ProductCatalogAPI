@@ -1,6 +1,4 @@
-﻿
-
-namespace ProductCatalogAPI.Features.Products.AddProduct.Commands
+﻿namespace ProductCatalogAPI.Features.Products.AddProduct.Commands
 {
     public record AddProductCommand(string Name, DateTime StartDate,
         TimeSpan Duration, decimal Price, Guid CategoryId) : IRequest<RequestResult<Guid>>;
@@ -34,6 +32,7 @@ namespace ProductCatalogAPI.Features.Products.AddProduct.Commands
                 CategoryId = request.CategoryId
             };
             await _productRepository.AddAsync(product);
+            await _mediator.Publish(new ProductAddedEvent(product.Id, product.Name, product.CreationDate, product.CreatedByUserId));
             return RequestResult<Guid>.Success(product.Id);
         }
     }

@@ -1,4 +1,5 @@
-﻿namespace ProductCatalogAPI.Common
+﻿
+namespace ProductCatalogAPI.Common
 {
     public static class PagedListQueryableExtensions
     {
@@ -31,6 +32,24 @@
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync(token);
+                return new PagedList<T>(items, count, page, pageSize);
+            }
+
+            return new(Enumerable.Empty<T>(), 0, 0, 0);
+        }
+
+        public static async Task<PagedList<T>> ToPagedList<T>(
+            this IEnumerable<T> source,
+            int page,
+            int pageSize)
+        {
+            var count = source.Count();
+            if (count > 0)
+            {
+                var items = source
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
                 return new PagedList<T>(items, count, page, pageSize);
             }
 
