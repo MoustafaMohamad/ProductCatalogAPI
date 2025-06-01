@@ -12,8 +12,8 @@
 
         [HttpPost("add-product")]
         [Authorize(Roles = "Admin")]
-        //[Authorize(Policy = "AdminOnly")]
-        public async Task<EndpointResponse<bool>> AddProductEndpointE([FromBody] AddProductEnpointRequest request)
+        [Authorize(Policy = "AdminOnly")]
+        public async Task<EndpointResponse<bool>> AddProductEndpoint([FromBody] AddProductEnpointRequest request)
         {
             var addProductResult = await _mediator.Send(
                 new AddProductCommand(request.Name, request.StartDate, request.Duration, request.Price, request.CategoryId));
