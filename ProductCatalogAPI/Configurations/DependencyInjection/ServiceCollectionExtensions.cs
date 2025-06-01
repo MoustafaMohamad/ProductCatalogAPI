@@ -20,6 +20,7 @@ namespace ProductCatalogAPI.Configurations.DependencyInjection
 
             services.AddScoped<CancellationTokenAccessor>();
             services.AddScoped<RequestParameters>();
+            services.AddScoped<NotificationParameters>();
             services.AddScoped<UserState>();
 
 

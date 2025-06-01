@@ -4,12 +4,12 @@ namespace ProductCatalogAPI
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class testController : ControllerBase
+    public class TestTokenGenratorController : ControllerBase
     {
         private readonly Context _context;
         private readonly ITokenHelper _tokenHelper;
 
-        public testController(ITokenHelper tokenHelper, Context context)
+        public TestTokenGenratorController(ITokenHelper tokenHelper, Context context)
         {
             _tokenHelper = tokenHelper;
             _context = context;
@@ -18,7 +18,6 @@ namespace ProductCatalogAPI
         [HttpPost]
         public string Get()
         {
-            Console.WriteLine($"_context.GetHashCode() in testController {_context.GetHashCode()}"); ;
 
             var adminUserId = Guid.Parse("11111111-1111-1111-1111-111111111111");
             var user = new User

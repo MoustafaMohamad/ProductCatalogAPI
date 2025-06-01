@@ -27,4 +27,4 @@ namespace ProductCatalogAPI.Features.Common.Data
     }
 
 }
-}
+

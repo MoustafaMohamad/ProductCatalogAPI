@@ -2,17 +2,17 @@
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AddProductEndpoint : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public AddProductEndpoint(IMediator mediator)
+        public ProductController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpPost("add-product")]
-        //[Authorize(Roles = "Admin")]
-        ////[Authorize(Policy = "AdminOnly")]
+        [Authorize(Roles = "Admin")]
+        //[Authorize(Policy = "AdminOnly")]
         public async Task<EndpointResponse<bool>> AddProductEndpointE([FromBody] AddProductEnpointRequest request)
         {
             var addProductResult = await _mediator.Send(
