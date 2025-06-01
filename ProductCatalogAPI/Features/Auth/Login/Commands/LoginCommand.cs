@@ -24,7 +24,7 @@ namespace ProductCatalogAPI.Features.Auth.Login.Commands
             {
                 return RequestResult<string>.Failure(ErrorCode.Unauthorized);
             }
-            if (!_passwordHasher.Verify(user.PasswordHash, request.Password))
+            if (!_passwordHasher.Verify(request.Password, user.PasswordHash))
             {
                 return RequestResult<string>.Failure(ErrorCode.Unauthorized);
             }

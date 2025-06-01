@@ -4,7 +4,7 @@
     {
         public static IServiceCollection AddFluentValidation(this IServiceCollection services, Assembly assembly)
         {
-            //services.AddValidatorsFromAssembly(assembly);
+            services.AddValidatorsFromAssembly(assembly);
             return services;
         }
     }

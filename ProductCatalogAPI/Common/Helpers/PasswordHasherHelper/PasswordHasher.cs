@@ -17,11 +17,11 @@
 
         public bool Verify(string password, string hashedPassword)
         {
-            var parts = hashedPassword.Split('-');
+            string[] parts = hashedPassword.Split('-');
             byte[] hash = Convert.FromHexString(parts[0]);
             byte[] salt = Convert.FromHexString(parts[1]);
             byte[] inputHash = Rfc2898DeriveBytes.Pbkdf2(password, salt, Iterations, HashAlgorithm, HashSize);
-            return CryptographicOperations.FixedTimeEquals(inputHash, hash);
+            return CryptographicOperations.FixedTimeEquals(hash, inputHash);
         }
     }
 }

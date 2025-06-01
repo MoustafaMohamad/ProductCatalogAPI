@@ -9,6 +9,7 @@ global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.ChangeTracking;
 global using Microsoft.IdentityModel.Tokens;
 global using ProductCatalogAPI.Common;
+global using ProductCatalogAPI.Common.Behaviors;
 global using ProductCatalogAPI.Common.Exceptions;
 global using ProductCatalogAPI.Common.Helpers;
 global using ProductCatalogAPI.Common.Helpers.PasswordHasherHelper;

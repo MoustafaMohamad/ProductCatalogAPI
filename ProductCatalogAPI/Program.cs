@@ -20,7 +20,7 @@ namespace ProductCatalogAPI
 
             builder.Services
                 .AddFluentValidation(Assembly.GetExecutingAssembly())
-                .AddMediatR()
+                .AddMediatRConfigration()
                 .AddAutoMapper(typeof(ProductProfile))
                 .AddApplicationServices()
                 .AddAuthenticationConfiguration(builder.Configuration)

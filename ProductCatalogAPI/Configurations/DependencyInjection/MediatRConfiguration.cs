@@ -1,12 +1,8 @@
-﻿
-
-using ProductCatalogAPI.Common.Behaviors;
-
-namespace ProductCatalogAPI.Configurations.DependencyInjection
+﻿namespace ProductCatalogAPI.Configurations.DependencyInjection
 {
     public static class MediatRConfiguration
     {
-        public static IServiceCollection AddMediatR(this IServiceCollection services)
+        public static IServiceCollection AddMediatRConfigration(this IServiceCollection services)
         {
             services.AddMediatR(cfg =>
             {
