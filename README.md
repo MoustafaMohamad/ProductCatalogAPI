@@ -2,7 +2,7 @@
 
 A robust, extensible ASP.NET Core Web API for managing product catalogs, categories, and users, built with modern **.NET 8** and **C# 12** features.
 
-The solution follows **clean architecture principles**, leverages **MediatR** for **CQRS and notifications**, and is designed for **scalability**, **maintainability**, and **testability**.
+The solution is structured using the **Vertical Slice Architecture** approach, aligning with **Clean Architecture** principles. It leverages **MediatR** to implement **CQRS** and **event-based notifications**, resulting in a modular, maintainable, and scalable design focused on feature-centric organization and testability.
 
 ---
 
