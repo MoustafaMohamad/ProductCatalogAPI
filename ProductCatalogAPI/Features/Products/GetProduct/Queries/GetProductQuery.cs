@@ -15,13 +15,13 @@
 
         public override async Task<RequestResult<GetProductDto>> Handle(GetProductQuery request, CancellationToken cancellationToken)
         {
-            var product = await _productRepository.GetByIdAsync(request.Id);
+            var product = _productRepository.Get(p => p.Id == request.Id);
 
             if (product is null)
             {
                 return RequestResult<GetProductDto>.Failure(ErrorCode.ProductNotFound);
             }
-            var productDto = product.MapOne<GetProductDto>();
+            var productDto = product.Map<GetProductDto>().FirstOrDefault();
             return RequestResult<GetProductDto>.Success(productDto);
         }
     }

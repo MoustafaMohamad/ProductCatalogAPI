@@ -28,6 +28,7 @@ namespace ProductCatalogAPI.Features.Products.EditProduct.Commands
             }
             var editedProduct = new Product
             {
+                Id = request.Id,
                 Name = request.Name,
                 StartDate = request.StartDate,
                 Duration = request.Duration,
@@ -38,6 +39,8 @@ namespace ProductCatalogAPI.Features.Products.EditProduct.Commands
             _productRepository.UpdateIncluded(editedProduct, nameof(Product.Name),
                 nameof(Product.StartDate), nameof(Product.Duration), nameof(Product.Price),
                 nameof(Product.CategoryId));
+
+
             return RequestResult<bool>.Success(true);
         }
     }

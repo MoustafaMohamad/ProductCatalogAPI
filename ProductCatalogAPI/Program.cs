@@ -22,6 +22,7 @@ namespace ProductCatalogAPI
                 .AddFluentValidation(Assembly.GetExecutingAssembly())
                 .AddMediatRConfigration()
                 .AddAutoMapper(typeof(ProductProfile))
+                .AddDBContext(builder.Configuration)
                 .AddApplicationServices()
                 .AddAuthenticationConfiguration(builder.Configuration)
                 .AddAuthorizationConfiguration()

@@ -26,6 +26,7 @@ namespace ProductCatalogAPI.Common.Middlewares
             }
             catch (Exception ex)
             {
+
                 string message = $"Error Occured: {ex.Message}.";
                 ErrorCode errorCode = ErrorCode.UnKnown;
 
@@ -33,6 +34,7 @@ namespace ProductCatalogAPI.Common.Middlewares
                 await _mediator.Send(new AddLogCommand(LogLevels.Error, loggingMessage));
 
                 var result = EndpointResponse<bool>.Failure(errorCode);
+
                 await context.Response.WriteAsJsonAsync(result);
             }
         }

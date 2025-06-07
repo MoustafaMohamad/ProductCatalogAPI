@@ -2,10 +2,8 @@
 {
     public class Context : DbContext
     {
-
-        public Context()
+        public Context(DbContextOptions<Context> options) : base(options)
         {
-
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -22,8 +20,9 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=ProductCatalogDb;Trusted_Connection=True;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer("Server=localhost;Database=ProductCatalogDb;Trusted_Connection=True;TrustServerCertificate=True;");
             optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution);
+
 
             base.OnConfiguring(optionsBuilder);
         }

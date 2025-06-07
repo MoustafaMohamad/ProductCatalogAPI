@@ -5,10 +5,10 @@ namespace ProductCatalogAPI.Features.Common.Data
     public enum ErrorCode
     {
         [Description("No error.")]
-        None,
+        None = 200,
 
         [Description("Invalid input data.")]
-        InvalidInput,
+        InvalidInput = 400,
 
         [Description("Product not found.")]
         ProductNotFound = 1000,
@@ -23,7 +23,7 @@ namespace ProductCatalogAPI.Features.Common.Data
         Unauthorized = 401,
 
         [Description("An unknown error occurred.")]
-        UnKnown = 2001
+        UnKnown = 500
     }
 
 }

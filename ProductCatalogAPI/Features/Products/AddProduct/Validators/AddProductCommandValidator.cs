@@ -14,12 +14,19 @@ namespace ProductCatalogAPI.Features.Products.AddProduct.Validators
                 .GreaterThan(DateTime.UtcNow).WithMessage("Start date must be in the future.");
             RuleFor(x => x.Duration)
                 .NotEmpty().WithMessage("Duration is required.")
-                .GreaterThan(TimeSpan.Zero).WithMessage("Duration must be greater than zero.");
+                .GreaterThan(TimeSpan.Zero).WithMessage("Duration must be greater than zero.")
+                 .Must(BeValidTimeSpan).WithMessage("Duration must be between 00:00:00 and 23:59:59.");
             RuleFor(x => x.Price)
                 .NotEmpty().WithMessage("Price is required.")
                 .GreaterThan(0).WithMessage("Price must be greater than zero.");
             RuleFor(x => x.CategoryId)
                 .NotEmpty().WithMessage("Category ID is required.");
+        }
+
+
+        private bool BeValidTimeSpan(TimeSpan duration)
+        {
+            return duration >= TimeSpan.Zero && duration < TimeSpan.FromHours(24);
         }
     }
 

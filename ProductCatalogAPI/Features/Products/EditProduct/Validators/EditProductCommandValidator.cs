@@ -19,11 +19,17 @@
                 .NotEmpty()
                 .WithMessage("Duration cannot be empty.")
                 .GreaterThan(TimeSpan.Zero)
-                .WithMessage("Duration must be greater than zero.");
+                .WithMessage("Duration must be greater than zero.")
+                .Must(BeValidTimeSpan).WithMessage("Duration must be between 00:00:00 and 23:59:59.");
             RuleFor(x => x.Price)
                 .GreaterThan(0)
                 .WithMessage("Price must be greater than zero.");
 
+        }
+
+        private bool BeValidTimeSpan(TimeSpan duration)
+        {
+            return duration >= TimeSpan.Zero && duration < TimeSpan.FromHours(24);
         }
     }
 

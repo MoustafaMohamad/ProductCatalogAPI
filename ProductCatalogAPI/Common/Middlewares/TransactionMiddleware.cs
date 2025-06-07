@@ -17,8 +17,8 @@
                 try
                 {
                     await next(context);
-                    await transaction.CommitAsync();
                     await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
 
                 }
                 catch (Exception)

@@ -14,6 +14,11 @@
             await _context.Set<T>().AddAsync(entity, cancellationToken);
         }
 
+        //public IQueryable<T> Get(Expression<Predicate<T> > expression)
+        //{
+        //    return GetAll
+        //}
+
         public Task<T?> FirstOrDefaultAsync(Expression<Func<T, bool>> predicate)
         {
             return _context.Set<T>().FirstOrDefaultAsync(predicate, cancellationToken);
@@ -21,6 +26,7 @@
 
         public IQueryable<T> Get(Expression<Func<T, bool>> predicate)
         {
+
             return _context.Set<T>().Where(predicate);
         }
 
